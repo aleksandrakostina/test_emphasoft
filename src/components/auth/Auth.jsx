@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { login } from '../../redux/actionCreators';
 import './Auth.css';
 
-const Auth = () => {
+const Auth = (props) => {
   return (
     <div className="auth">
       <div className="container">
@@ -27,11 +29,20 @@ const Auth = () => {
           </div>        
           <button className="button auth-form__button" type="submit">LogIn</button>
         </form>
+        <button onClick={()=> props.getUsers('test_super', 'Nf<U4f<rDbtDxAPn')}></button>
       </div>
     </div>
   )
 }
 
-export default reduxForm({
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUsers: (username, password) => {
+      dispatch(login(username, password))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(reduxForm({
   form: 'authForm'
-})(Auth);
+})(Auth));
