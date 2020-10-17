@@ -26,7 +26,7 @@ const Auth = (props) => {
               name="password"
               autoComplete="off" />
           </div>
-          {props.err && <span>Error</span>}       
+          <span className="auth-form__error">{props.err && 'Invalid password or username'}</span>     
           <button className="button auth-form__button" type="submit">LogIn</button>
         </form>
       </div>

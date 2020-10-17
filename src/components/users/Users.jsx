@@ -8,7 +8,6 @@ const Users = (props) => {
   
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log(token)
     props.get(token)
   }, []);
 

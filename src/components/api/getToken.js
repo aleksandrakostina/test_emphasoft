@@ -12,7 +12,13 @@ const getToken = (username, password) => {
       "username": username,
       "password": password
     }),
-  }).then(response => response.json())   
+  }).then(response => {
+    if(response.ok) {
+      return response.json();
+    } else {
+      throw new Error();
+    }
+  })   
 }
 
 export default getToken;;

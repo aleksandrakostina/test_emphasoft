@@ -9,7 +9,13 @@ const getUsers = (token) => {
       'Content-Type': 'application/json',
       'Authorization': `Token ${token}`
     },
-  }).then(response => response.json())
+  }).then(response => {
+    if(response.ok) {
+      return response.json();
+    } else {
+      throw new Error();
+    }
+  })
 }
 
 export default getUsers;;
