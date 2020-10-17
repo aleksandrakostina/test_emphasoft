@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { login } from '../../redux/actionCreators';
+import { login, loginFail, success } from '../../redux/actionCreators';
 import Auth from './Auth';
 
 const AuthContainer = (props) => {
@@ -14,13 +14,19 @@ const AuthContainer = (props) => {
     if(values.username && values.password) {
       props.getUsers(values.username, values.password);
     } else {
-      console.log('enter password and username')
+      props.loginFail();
+      //alert('Enter your password or username');
     }
+  }
+
+  const handleChange = () => {
+    props.success();
   }
 
   return (
     <Auth onSubmit={handleSubmit} 
-          err={props.err} />
+          err={props.err}
+          handleChange={handleChange} />
   )
 }
 
@@ -35,6 +41,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getUsers: (username, password) => {
       dispatch(login(username, password))
+    },
+    loginFail: () => {
+      dispatch(loginFail());
+    },
+    success: () => {
+      dispatch(success());
     }
   }
 }

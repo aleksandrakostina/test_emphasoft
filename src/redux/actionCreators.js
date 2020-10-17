@@ -1,6 +1,6 @@
 import getToken from "../components/api/getToken";
 import getUsers from "../components/api/getUsers";
-import { LOGIN_FAIL, LOGIN_SUCCESS, GET_USERS } from "./actions";
+import { LOGIN_FAIL, LOGIN_SUCCESS, GET_USERS, SUCCESS } from "./actions";
 
 export function loginSuccess() {
   return { type: LOGIN_SUCCESS };
@@ -11,7 +11,11 @@ export function loginFail() {
 }
 
 export function getData(users) {
-  return { type: GET_USERS, users}
+  return { type: GET_USERS, users};
+}
+
+export function success() {
+  return { type: SUCCESS };
 }
 
 export const login = (username, password) => (dispatch) => {
@@ -29,7 +33,7 @@ export const login = (username, password) => (dispatch) => {
 export const get = (token) => (dispatch) => {
   return getUsers(token)
     .then(users => {
-      dispatch(getData(users));
+      dispatch(getData(users));      
     })
     .catch(err => {  
       dispatch(loginFail());

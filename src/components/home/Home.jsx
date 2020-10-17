@@ -20,7 +20,8 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: state.login.isAuth
+    isAuth: state.login.isAuth,
+    isLoading: state.users.isLoading
   }
 }
 
