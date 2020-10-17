@@ -1,39 +1,27 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { get } from '../../redux/actionCreators';
+import { Redirect } from 'react-router-dom';
 import Header from '../header/Header';
 import Users from '../users/Users';
-import './Home.css';
 
 const Home = (props) => {
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    console.log(token)
-    props.get(token)
-  }, [])
+  
+  if(!props.isAuth) {
+    return <Redirect to="/login" />
+  }
 
   return (
     <>
       <Header />
-      <Users users={props.users} />
+      <Users />
     </>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users.users
+    isAuth: state.login.isAuth
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    get: (token) => {
-      dispatch(get(token))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);

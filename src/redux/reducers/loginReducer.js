@@ -1,9 +1,9 @@
-import { LOGIN_FAIL, LOGIN_SUCCESS, GET_USERS} from "../actions";
+import { LOGIN_FAIL, LOGIN_SUCCESS } from "../actions";
 
 const initialState = {
   token: '',
-  err: '',
-  auth: false
+  err: false,
+  isAuth: false
 };
 
 export const loginReducer = (state = initialState, action) => {
@@ -11,12 +11,14 @@ export const loginReducer = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        auth: true
+        err: false,
+        isAuth: true
       };
     case LOGIN_FAIL: 
       return {
         ...state,
-        err: action.err
+        isAuth: false,
+        err: true
       };
     default:
       return state;

@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { get } from '../../redux/actionCreators';
 import User from './User';
 import './Users.css';
 
 const Users = (props) => {
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    console.log(token)
+    props.get(token)
+  }, []);
 
   const users = props.users.map(user => <User key={user.id} user={user} />);
 
@@ -23,4 +31,18 @@ const Users = (props) => {
   )
 }
 
-export default Users;
+const mapStateToProps = (state) => {
+  return {
+    users: state.users.users
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    get: (token) => {
+      dispatch(get(token))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);
