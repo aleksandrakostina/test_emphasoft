@@ -31,3 +31,8 @@
   width: 40px;
   margin-right: 5px;
 }
+
+.users__button {
+  padding: 0 15px;
+  text-decoration: none;
+}

@@ -29,7 +29,7 @@ console.log(props)
               autoComplete="off"
               onChange={props.handleChange} />
           </div>
-          <span className="auth-form__error">{props.err && 'Invalid password or username'}</span>     
+          <span className="auth-form__error">{props.err && 'Incorrect password or username'}</span>     
           <button className="button auth-form__button" type="submit">LogIn</button>
         </form>
       </div>

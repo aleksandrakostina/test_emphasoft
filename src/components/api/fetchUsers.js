@@ -1,7 +1,7 @@
 const URL = 'http://emphasoft-test-assignment.herokuapp.com';
 const GET = 'GET';
 
-const getUsers = (token) => {
+const fetchUsers = (token) => {
   return fetch(URL+'/api/v1/users/', {
     method: GET,
     headers: {
@@ -18,4 +18,4 @@ const getUsers = (token) => {
   })
 }
 
-export default getUsers;;
+export default fetchUsers;;

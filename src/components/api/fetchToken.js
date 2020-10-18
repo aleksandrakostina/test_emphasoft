@@ -1,7 +1,7 @@
 const URL = 'http://emphasoft-test-assignment.herokuapp.com';
 const POST = 'POST';
 
-const getToken = (username, password) => {
+const fetchToken = (username, password) => {
   return fetch(URL+'/api-token-auth/', {
     method: POST,
     headers: {
@@ -21,4 +21,4 @@ const getToken = (username, password) => {
   })   
 }
 
-export default getToken;;
+export default fetchToken;;

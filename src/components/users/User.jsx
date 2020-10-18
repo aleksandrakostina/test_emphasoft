@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const User = (props) => {
 
@@ -8,6 +9,7 @@ const User = (props) => {
       <span className="users__name">{props.user.first_name ? props.user.first_name : '-'}</span>
       <span className="users__name">{props.user.last_name ? props.user.last_name : '-'}</span>
       <span className="users__name">{props.user.username}</span>
+      <Link className="button users__button" to={`/user/${props.user.id}`}>Edit</Link>
     </li>
   )
 }

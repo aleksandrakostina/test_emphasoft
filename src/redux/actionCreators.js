@@ -1,9 +1,9 @@
-import getToken from "../components/api/getToken";
-import getUsers from "../components/api/getUsers";
-import { LOGIN_FAIL, LOGIN_SUCCESS, GET_USERS, SUCCESS } from "./actions";
+import fetchToken from "../components/api/fetchToken";
+import fetchUsers from "../components/api/fetchUsers";
+import { LOGIN_FAIL, LOGIN_SUCCESS, GET_USERS, SUCCESS, LOGOUT } from "./actions";
 
-export function loginSuccess() {
-  return { type: LOGIN_SUCCESS };
+export function loginSuccess(token) {
+  return { type: LOGIN_SUCCESS, token };
 }
 
 export function loginFail() {
@@ -18,20 +18,23 @@ export function success() {
   return { type: SUCCESS };
 }
 
+export function logout() {
+  return { type: LOGOUT };
+}
+
 export const login = (username, password) => (dispatch) => {
-  return getToken(username, password)
+  return fetchToken(username, password)
     .then(data => {
-      dispatch(loginSuccess());
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', username);
+      dispatch(loginSuccess(data.token));
     })
     .catch(err => {
       dispatch(loginFail());
     })
 };
 
-export const get = (token) => (dispatch) => {
-  return getUsers(token)
+export const getUsers = () => (dispatch) => {
+  const token = localStorage.getItem('token');
+  return fetchUsers(token)
     .then(users => {
       dispatch(getData(users));      
     })
