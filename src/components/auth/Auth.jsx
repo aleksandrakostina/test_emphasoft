@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { validate } from '../../utils/validate';
+import InputField from '../InputFields';
 import './Auth.css';
 
 const Auth = (props) => {
@@ -12,21 +14,19 @@ const Auth = (props) => {
           <div className="auth-form__item">
             <Field 
               className="auth-form__input"
-              component="input"
+              component={InputField}
               type="text" 
               placeholder="Username" 
-              name="username"
-              required />
+              name="username" />
           </div>
           <div className="auth-form__item">
             <Field 
               className="auth-form__input"
-              component="input"
+              component={InputField}
               type="password" 
               placeholder="Password" 
               name="password"
-              autoComplete="off"
-              required />
+              autoComplete="off" />
           </div>  
           <button className="button auth-form__button" type="submit">LogIn</button>
         </form>
@@ -36,5 +36,6 @@ const Auth = (props) => {
 }
 
 export default reduxForm({
-  form: 'authForm'
+  form: 'authForm',
+  validate
 })(Auth);

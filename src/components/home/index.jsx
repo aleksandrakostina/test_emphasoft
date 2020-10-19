@@ -1,29 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { getUsers } from '../../redux/actionCreators';
 import CreateButton from './CreateButton';
 import Header from './header';
 import Users from './users';
 
-const Home = (props) => {
+const Home = ({getUsers, isLoading}) => {
   
-  if(!props.isAuth) {
-    return <Redirect to="/login" />
+  useEffect(() => {
+    getUsers();
+  }, [getUsers]);
+
+  if(isLoading) {
+    return null;
   }
 
   return (
     <>
       <Header />
       <CreateButton />
-      <Users />
+      <Users />     
     </>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: state.login.isAuth
+    isLoading: state.loader.isLoading
   }
 }
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUsers: () => {
+      dispatch(getUsers())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

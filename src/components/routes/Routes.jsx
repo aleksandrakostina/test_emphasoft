@@ -4,14 +4,15 @@ import AuthContainer from '../auth';
 import CreateFormContainer from '../createForm';
 import EditFormContainer from '../editForm';
 import Home from '../home';
+import AuthRoute from './AuthRoute';
 
 function Routes() {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={Home} />
-      <Route path="/users/:id" component={EditFormContainer} />
+      <AuthRoute path="/" exact component={Home} />
+      <AuthRoute path="/users/:id" component={EditFormContainer} />
       <Route path="/login" exact component={AuthContainer} />
-      <Route path="/create" exact component={CreateFormContainer} />
+      <AuthRoute path="/create" exact component={CreateFormContainer} />
     </BrowserRouter>
   );
 }

@@ -3,7 +3,7 @@ import { fetchEdit } from "../components/api/fetchEdit";
 import { fetchToken } from "../components/api/fetchToken";
 import { fetchUser } from "../components/api/fetchUser";
 import { fetchUsers } from "../components/api/fetchUsers";
-import { LOGIN_FAIL, LOGIN_SUCCESS, GET_USERS, LOGOUT, GET_USER, EDIT_USER, CLEAR_EDIT_USER, CREATE_USER, CLEAR_CREATE_USER } from "./actions";
+import { LOGIN_FAIL, LOGIN_SUCCESS, GET_USERS, LOGOUT, GET_USER, EDIT_USER, CREATE_USER, CLEAR, LOADING, LOADED, ERROR } from "./actions";
 
 export function loginSuccess(token) {
   return { type: LOGIN_SUCCESS, token };
@@ -29,16 +29,24 @@ export function editUser(user) {
   return { type: EDIT_USER, user }
 }
 
-export function clearEditUser() {
-  return { type: CLEAR_EDIT_USER }
-}
-
 export function createUser(user) {
   return { type: CREATE_USER, user}
 }
 
-export function clearCreateUser() {
-  return { type: CLEAR_CREATE_USER }
+export function clear() {
+  return { type: CLEAR }
+}
+
+export function loading() {
+  return { type: LOADING }
+}
+
+export function loaded() {
+  return { type: LOADED }
+}
+
+export function createError(err) {
+  return { type: ERROR, err }
 }
 
 export const login = (data) => (dispatch) => {
@@ -53,9 +61,11 @@ export const login = (data) => (dispatch) => {
 };
 
 export const getUsers = () => (dispatch) => {
+  dispatch(loading());
   return fetchUsers()
     .then(users => {
-      dispatch(getData(users));      
+      dispatch(getData(users));
+      dispatch(loaded());
     })
     .catch(err => {  
       dispatch(loginFail());
@@ -63,31 +73,33 @@ export const getUsers = () => (dispatch) => {
 }
 
 export const get = (id) => (dispatch) => {
+  dispatch(loading());
   return fetchUser(id)
     .then(user => {
-      dispatch(getUser(user));      
+      dispatch(getUser(user));
+      dispatch(loaded());    
     })
     .catch(err => {  
-      console.log(err)
+      dispatch(createError(err));
     })
 }
 
 export const edit = (id, user) => (dispatch) => {
   return fetchEdit(id, user)
   .then(data => {
-    dispatch(editUser(data));      
+    dispatch(editUser(data));
   })
   .catch(err => {  
-    console.log(err)
+    dispatch(createError(err));
   })
 }
 
 export const create = (user) => (dispatch) => {
   return fetchCreate(user)
   .then(data => {
-    dispatch(createUser(data));      
+    dispatch(createUser(data));  
   })
   .catch(err => {  
-    console.log(err)
+    dispatch(createError(err));
   })
 }

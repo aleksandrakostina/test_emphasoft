@@ -1,15 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { getUsers } from '../../../redux/actionCreators';
 import Header from './Header';
 import User from './User';
 import './Users.css';
 
-const Users = ({ getUsers, users }) => {
-
-  useEffect(() => {
-    getUsers();
-  }, [getUsers]);
+const Users = ({ users }) => {
 
   const renderUsers = users.map(user => <User key={user.id} user={user} />);
 
@@ -31,12 +26,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getUsers: () => {
-      dispatch(getUsers())
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps)(Users);

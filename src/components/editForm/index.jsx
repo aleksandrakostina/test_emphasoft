@@ -2,26 +2,29 @@ import React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { clearEditUser, edit, get } from '../../redux/actionCreators';
+import { clear, edit, get } from '../../redux/actionCreators';
 import { createForm } from '../form';
 
 const EditForm = createForm('editForm', true)
 
-const EditFormContainer = ({ get, match, clearEditUser, edit, user, editUser }) => {
+const EditFormContainer = ({ get, match, edit, user, editUser, clear, isLoading }) => {
   
   useEffect(() => {
-    get(match.params.id)
-  }, [match.params.id, get]);
+    clear();
+  }, [editUser, clear]);
 
   useEffect(() => {
-    if(editUser) {
-      clearEditUser();
-    }
-  }, [editUser, clearEditUser]);
+    get(match.params.id);
+  }, [match.params.id, get]);
 
+  if(isLoading) {
+    return null;
+  }
+  
   if(editUser) {
     return <Redirect to="/" />
   }
+
   const handleSubmit = (values) => {
     edit(match.params.id, values);
   }
@@ -37,16 +40,17 @@ const mapDispatchToProps = (dispatch) => {
     edit: (id, user) => {
       dispatch(edit(id, user));
     },
-    clearEditUser: () => {
-      dispatch(clearEditUser());
-    } 
+    clear: () => {
+      dispatch(clear());
+    }
   }
 }
 
 const mapStateToProps = (state) => {
   return {
     user: state.users.user,
-    editUser: state.users.editUser
+    editUser: state.users.editUser,
+    isLoading: state.loader.isLoading
   }
 }
 

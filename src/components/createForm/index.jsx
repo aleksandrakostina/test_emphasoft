@@ -2,19 +2,17 @@ import React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { clearCreateUser, create } from '../../redux/actionCreators';
+import { clear, create } from '../../redux/actionCreators';
 import { createForm } from '../form';
 
 const CreateForm = createForm('createForm');
 
-const CreateFormContainer = ({ createUser, clearCreateUser, create}) => {
+const CreateFormContainer = ({ createUser, clear, create }) => {
 
   useEffect(() => {
-    if(createUser) {
-      clearCreateUser();
-    }
-  }, [createUser, clearCreateUser]);
-  
+    clear();
+  }, [createUser, clear]);
+
   if(createUser) {
     return <Redirect to="/" />
   }
@@ -33,8 +31,8 @@ const mapDispatchToProps = (dispatch) => {
     create: (user) => {
       dispatch(create(user))
     },
-    clearCreateUser: () => {
-      dispatch(clearCreateUser())
+    clear: () => {
+      dispatch(clear());
     }
   }
 }

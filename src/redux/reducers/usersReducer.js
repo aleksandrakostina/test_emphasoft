@@ -1,11 +1,11 @@
-import { CLEAR_CREATE_USER, CLEAR_EDIT_USER, CREATE_USER, EDIT_USER, GET_USER, GET_USERS } from "../actions";
+import { CLEAR, CREATE_USER, EDIT_USER, ERROR, GET_USER, GET_USERS } from "../actions";
 
 const initialState = {
   users: [],
-  newUser: null,
   user: null,
   editUser: null,
-  createUser: null
+  createUser: null,
+  error: null
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -30,15 +30,14 @@ export const usersReducer = (state = initialState, action) => {
         ...state,
         editUser: action.user
       }
-    case CLEAR_EDIT_USER:
+    case CLEAR:
       return {
-        ...state,
-        editUser: null
+        ...initialState
       }
-    case CLEAR_CREATE_USER:
+    case ERROR:
       return {
         ...state,
-        createUser: null
+        error: action.error
       }
     default:
       return state;
