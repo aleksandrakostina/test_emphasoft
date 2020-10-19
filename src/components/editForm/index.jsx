@@ -3,23 +3,30 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { clearEditUser, edit, get } from '../../redux/actionCreators';
-import EditForm from './EditForm';
+import { createForm } from '../form';
 
-const EditFormContainer = (props) => {
-  console.log(props)
+const EditForm = createForm('editForm', true)
+
+const EditFormContainer = ({ get, match, clearEditUser, edit, user, editUser }) => {
+  
   useEffect(() => {
-    props.get(props.match.params.id)
-  }, [props.match.params.id]);
+    get(match.params.id)
+  }, [match.params.id, get]);
 
-  if(props.editUser) {
-    props.clearEditUser();
+  useEffect(() => {
+    if(editUser) {
+      clearEditUser();
+    }
+  }, [editUser, clearEditUser]);
+
+  if(editUser) {
     return <Redirect to="/" />
   }
   const handleSubmit = (values) => {
-    props.edit(props.match.params.id, values);
+    edit(match.params.id, values);
   }
  
-  return props.user && <EditForm user={props.user} onSubmit={handleSubmit} />;
+  return user && <EditForm title='Edit username' user={user} onSubmit={handleSubmit} />;
 }
 
 const mapDispatchToProps = (dispatch) => {

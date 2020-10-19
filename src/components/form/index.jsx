@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { validate } from '../../utils/validate';
 import InputField from '../InputFields';
+import './Form.css';
 
-function CreateForm(props) {
-  console.log(props)
+function Form(props) {
  
   return (
     <div className="edit">
       <div className="wrapper">
-        <h2>Create username</h2>
+        <h2>{props.title}</h2>
         <form className="edit-form" onSubmit={props.handleSubmit}>
           <label htmlFor="username">Username</label>
           <Field className="edit__input" component={InputField} type="text" name="username" />
@@ -24,26 +24,29 @@ function CreateForm(props) {
             <label htmlFor="is_active">Is active</label>
             <Field className="edit__input" component={InputField} type="checkbox" name="is_active" />
           </span>
-          <button className="button edit-form__button" type="submit" disabled={!props.valid}>Save</button>
+          <button className="button edit-form__button" type="submit">Save</button>
         </form>
       </div>
     </div>
   );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     initialValues: {
-      username: '',
-      first_name: '',
-      last_name: '',
-      password: '',
-      is_active: true,
+      username: ownProps.user?.username || '',
+      first_name: ownProps.user?.first_name || '',
+      last_name: ownProps.user?.last_name || '',
+      is_active: ownProps.user?.is_active || true,
+      password: ownProps.user?.username ? 'Nf<U4f<rDbtDxAPn' : ''
     }
   }
 }
 
-export default connect(mapStateToProps)(reduxForm({
-  form: 'createForm',
-  validate: validate
-})(CreateForm));
+export const createForm = (formName, enableReinitialize = false) => {
+  return connect(mapStateToProps)(reduxForm({
+    form: formName,
+    enableReinitialize,
+    validate
+  })(Form));
+}

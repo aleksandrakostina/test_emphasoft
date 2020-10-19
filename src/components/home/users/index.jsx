@@ -5,20 +5,20 @@ import Header from './Header';
 import User from './User';
 import './Users.css';
 
-const Users = (props) => {
-  
-  useEffect(() => {
-    props.getUsers();
-  }, []);
+const Users = ({ getUsers, users }) => {
 
-  const users = props.users.map(user => <User key={user.id} user={user} />);
+  useEffect(() => {
+    getUsers();
+  }, [getUsers]);
+
+  const renderUsers = users.map(user => <User key={user.id} user={user} />);
 
   return (
     <div className="users">
       <div className="wrapper">
         <Header />
         <ul>
-          {users}
+          {renderUsers}
         </ul>
       </div>
     </div>

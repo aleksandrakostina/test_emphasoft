@@ -3,26 +3,28 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { clearCreateUser, create } from '../../redux/actionCreators';
-import CreateForm from './CreateForm';
+import { createForm } from '../form';
 
-const CreateFormContainer = (props) => {
+const CreateForm = createForm('createForm');
+
+const CreateFormContainer = ({ createUser, clearCreateUser, create}) => {
 
   useEffect(() => {
-    if(props.createUser) {
-      props.clearCreateUser();
+    if(createUser) {
+      clearCreateUser();
     }
-  }, [props.createUser]);
+  }, [createUser, clearCreateUser]);
   
-  if(props.createUser) {
+  if(createUser) {
     return <Redirect to="/" />
   }
 
   const handleSubmit = (values) => {
-    props.create(values);
+    create(values);
   }
  
   return (
-    <CreateForm onSubmit={handleSubmit} />
+    <CreateForm title="Create user" onSubmit={handleSubmit} />
   );
 }
 

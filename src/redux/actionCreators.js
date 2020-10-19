@@ -67,7 +67,6 @@ export const get = (id) => (dispatch) => {
   const token = localStorage.getItem('token');
   return fetchUser(token, id)
     .then(user => {
-      console.log(user)
       dispatch(getUser(user));      
     })
     .catch(err => {  
