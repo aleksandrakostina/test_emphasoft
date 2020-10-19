@@ -11,7 +11,7 @@ const AuthContainer = (props) => {
   } 
   
   const handleSubmit = (values) => {
-    props.login(values.username, values.password);
+    props.login(values);
   }
 
   return (

@@ -1,8 +1,8 @@
-import fetchCreate from "../components/api/fetchCreate";
-import fetchEdit from "../components/api/fetchEdit";
-import fetchToken from "../components/api/fetchToken";
-import fetchUser from "../components/api/fetchUser";
-import fetchUsers from "../components/api/fetchUsers";
+import { fetchCreate } from "../components/api/fetchCreate";
+import { fetchEdit } from "../components/api/fetchEdit";
+import { fetchToken } from "../components/api/fetchToken";
+import { fetchUser } from "../components/api/fetchUser";
+import { fetchUsers } from "../components/api/fetchUsers";
 import { LOGIN_FAIL, LOGIN_SUCCESS, GET_USERS, LOGOUT, GET_USER, EDIT_USER, CLEAR_EDIT_USER, CREATE_USER, CLEAR_CREATE_USER } from "./actions";
 
 export function loginSuccess(token) {
@@ -41,10 +41,10 @@ export function clearCreateUser() {
   return { type: CLEAR_CREATE_USER }
 }
 
-export const login = (username, password) => (dispatch) => {
-  return fetchToken(username, password)
-    .then(data => {
-      dispatch(loginSuccess(data.token));
+export const login = (data) => (dispatch) => {
+  return fetchToken(data)
+    .then(token => {
+      dispatch(loginSuccess(token.token));
     })
     .catch(err => {
       dispatch(loginFail());
@@ -53,8 +53,7 @@ export const login = (username, password) => (dispatch) => {
 };
 
 export const getUsers = () => (dispatch) => {
-  const token = localStorage.getItem('token');
-  return fetchUsers(token)
+  return fetchUsers()
     .then(users => {
       dispatch(getData(users));      
     })
@@ -64,8 +63,7 @@ export const getUsers = () => (dispatch) => {
 }
 
 export const get = (id) => (dispatch) => {
-  const token = localStorage.getItem('token');
-  return fetchUser(token, id)
+  return fetchUser(id)
     .then(user => {
       dispatch(getUser(user));      
     })
@@ -75,8 +73,7 @@ export const get = (id) => (dispatch) => {
 }
 
 export const edit = (id, user) => (dispatch) => {
-  const token = localStorage.getItem('token');
-  return fetchEdit(token, id, user)
+  return fetchEdit(id, user)
   .then(data => {
     dispatch(editUser(data));      
   })
@@ -86,8 +83,7 @@ export const edit = (id, user) => (dispatch) => {
 }
 
 export const create = (user) => (dispatch) => {
-  const token = localStorage.getItem('token');
-  return fetchCreate(token, user)
+  return fetchCreate(user)
   .then(data => {
     dispatch(createUser(data));      
   })
