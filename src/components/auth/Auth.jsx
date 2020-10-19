@@ -3,7 +3,6 @@ import { Field, reduxForm } from 'redux-form';
 import './Auth.css';
 
 const Auth = (props) => {
-console.log(props)
 
   return (
     <div className="auth">
@@ -17,7 +16,7 @@ console.log(props)
               type="text" 
               placeholder="Username" 
               name="username"
-              onChange={props.handleChange} />
+              required />
           </div>
           <div className="auth-form__item">
             <Field 
@@ -27,9 +26,8 @@ console.log(props)
               placeholder="Password" 
               name="password"
               autoComplete="off"
-              onChange={props.handleChange} />
-          </div>
-          <span className="auth-form__error">{props.err && 'Incorrect password or username'}</span>     
+              required />
+          </div>  
           <button className="button auth-form__button" type="submit">LogIn</button>
         </form>
       </div>

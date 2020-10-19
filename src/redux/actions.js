@@ -1,5 +1,9 @@
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
-export const GET_USERS = 'USERS';
-export const SUCCESS = 'SUCCESS';
+export const GET_USERS = 'GET_USERS';
+export const GET_USER = 'GET_USER';
+export const EDIT_USER = 'EDIT_USER';
+export const CREATE_USER = 'CREATE_USER';
+export const CLEAR_EDIT_USER = 'CLEAR_EDIT_USER';
+export const CLEAR_CREATE_USER = 'CLEAR_CREATE_USER';

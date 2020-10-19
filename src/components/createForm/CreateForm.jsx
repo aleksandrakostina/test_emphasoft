@@ -3,15 +3,14 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { validate } from '../../utils/validate';
 import InputField from '../InputFields';
-import './EditForm.css'
 
-function EditForm(props) {
+function CreateForm(props) {
   console.log(props)
  
   return (
     <div className="edit">
       <div className="wrapper">
-        <h2>Edit username</h2>
+        <h2>Create username</h2>
         <form className="edit-form" onSubmit={props.handleSubmit}>
           <label htmlFor="username">Username</label>
           <Field className="edit__input" component={InputField} type="text" name="username" />
@@ -32,20 +31,19 @@ function EditForm(props) {
   );
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     initialValues: {
-      username: ownProps.user.username,
-      first_name: ownProps.user.first_name,
-      last_name: ownProps.user.last_name,
-      is_active: ownProps.user.is_active,
-      password: 'Nf<U4f<rDbtDxAPn'
+      username: '',
+      first_name: '',
+      last_name: '',
+      password: '',
+      is_active: true,
     }
   }
 }
 
 export default connect(mapStateToProps)(reduxForm({
-  form: 'editForm',
-  enableReinitialize : true,
-  validate
-})(EditForm));
+  form: 'createForm',
+  validate: validate
+})(CreateForm));

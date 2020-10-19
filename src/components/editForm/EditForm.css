@@ -1,0 +1,41 @@
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 0 auto;
+}
+
+.edit-form label {
+  font-weight: 500;
+}
+
+.edit-form__button {
+  height: 30px;
+}
+
+.edit__input {
+  font-size: 16px;
+  outline: none;
+  padding: 5px;
+}
+
+.edit__input:focus {
+  border: 1px solid  #2196F3;
+}
+
+.edit__active {
+  display: flex;
+}
+
+.edit__active label {
+  margin-right: 20px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.edit-form__button:disabled {
+  background:rgb(32, 148, 243, 0.6);
+}

@@ -3,11 +3,11 @@ import './App.css';
 import AuthProvider from './components/AuthProvider';
 import Routes from './components/routes/Routes';
 
-function App() {
+const App = () => {
   return (
-      <AuthProvider>
-        <Routes />
-      </AuthProvider>
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
   );
 }
 

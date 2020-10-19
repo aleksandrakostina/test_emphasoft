@@ -1,9 +1,8 @@
-import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, SUCCESS } from "../actions";
+import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "../actions";
 
 const initialState = {
-  token: '',
   err: false,
-  isAuth: !!localStorage.getItem('token')
+  isAuth: !!localStorage.getItem('token'),
 };
 
 export const loginReducer = (state = initialState, action) => {
@@ -21,11 +20,6 @@ export const loginReducer = (state = initialState, action) => {
         isAuth: false,
         err: true
       };
-    case SUCCESS:
-      return {
-        ...state,
-        err: false
-      }
     case LOGOUT:
       localStorage.removeItem('token');
       return {

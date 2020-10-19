@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Header from '../header/Header';
-import Users from '../users/Users';
+import CreateButton from './CreateButton';
+import Header from './header';
+import Users from './users';
 
 const Home = (props) => {
   
@@ -13,6 +14,7 @@ const Home = (props) => {
   return (
     <>
       <Header />
+      <CreateButton />
       <Users />
     </>
   )

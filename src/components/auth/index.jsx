@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { login, loginFail, success } from '../../redux/actionCreators';
+import { login } from '../../redux/actionCreators';
 import Auth from './Auth';
 
 const AuthContainer = (props) => {
@@ -11,28 +11,16 @@ const AuthContainer = (props) => {
   } 
   
   const handleSubmit = (values) => {
-    if(values.username && values.password) {
-      props.login(values.username, values.password);
-    } else {
-      props.loginFail();
-      //alert('Enter your password or username');
-    }
-  }
-
-  const handleChange = () => {
-    props.success();
+    props.login(values.username, values.password);
   }
 
   return (
-    <Auth onSubmit={handleSubmit} 
-          err={props.err}
-          handleChange={handleChange} />
+    <Auth onSubmit={handleSubmit} />
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    err: state.login.err,
     isAuth: state.login.isAuth
   }
 }
@@ -41,12 +29,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     login: (username, password) => {
       dispatch(login(username, password))
-    },
-    loginFail: () => {
-      dispatch(loginFail());
-    },
-    success: () => {
-      dispatch(success());
     }
   }
 }

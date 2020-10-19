@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { logout } from '../../redux/actionCreators';
+import { logout } from '../../../redux/actionCreators';
 import './Header.css';
 
 const Header = (props) => {
@@ -21,12 +20,6 @@ const Header = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.login.isAuth
-  }
-}
-
 const mapDispathToProps = (dispath) => {
   return {
     logout: () => {
@@ -35,4 +28,4 @@ const mapDispathToProps = (dispath) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispathToProps)(Header);
+export default connect(null, mapDispathToProps)(Header);

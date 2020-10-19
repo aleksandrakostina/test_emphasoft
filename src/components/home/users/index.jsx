@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUsers } from '../../redux/actionCreators';
+import { getUsers } from '../../../redux/actionCreators';
+import Header from './Header';
 import User from './User';
 import './Users.css';
 
 const Users = (props) => {
   
   useEffect(() => {
-    props.getUsers()
+    props.getUsers();
   }, []);
 
   const users = props.users.map(user => <User key={user.id} user={user} />);
@@ -15,12 +16,7 @@ const Users = (props) => {
   return (
     <div className="users">
       <div className="wrapper">
-        <div className="users__title">
-          <span className="users__id">ID</span>
-          <span className="users__name">Firstname</span>
-          <span className="users__name">Lastname</span>
-          <span className="users__name">Username</span>
-        </div>
+        <Header />
         <ul>
           {users}
         </ul>
