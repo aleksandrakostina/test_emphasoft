@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/test_emphasoft/static/css/main.fb4adb70.chunk.css",
+    "main.js": "/test_emphasoft/static/js/main.08f59e6f.chunk.js",
+    "main.js.map": "/test_emphasoft/static/js/main.08f59e6f.chunk.js.map",
+    "runtime-main.js": "/test_emphasoft/static/js/runtime-main.d688091b.js",
+    "runtime-main.js.map": "/test_emphasoft/static/js/runtime-main.d688091b.js.map",
+    "static/js/2.a2ec8652.chunk.js": "/test_emphasoft/static/js/2.a2ec8652.chunk.js",
+    "static/js/2.a2ec8652.chunk.js.map": "/test_emphasoft/static/js/2.a2ec8652.chunk.js.map",
+    "index.html": "/test_emphasoft/index.html",
+    "precache-manifest.42beb9f7ebceaac2774a3f435980f3f3.js": "/test_emphasoft/precache-manifest.42beb9f7ebceaac2774a3f435980f3f3.js",
+    "service-worker.js": "/test_emphasoft/service-worker.js",
+    "static/css/main.fb4adb70.chunk.css.map": "/test_emphasoft/static/css/main.fb4adb70.chunk.css.map",
+    "static/js/2.a2ec8652.chunk.js.LICENSE.txt": "/test_emphasoft/static/js/2.a2ec8652.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d688091b.js",
+    "static/js/2.a2ec8652.chunk.js",
+    "static/css/main.fb4adb70.chunk.css",
+    "static/js/main.08f59e6f.chunk.js"
+  ]
+}
