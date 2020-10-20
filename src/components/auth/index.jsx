@@ -5,7 +5,7 @@ import { login } from '../../redux/actionCreators';
 import Auth from './Auth';
 
 const AuthContainer = (props) => {
-console.log(props)
+
   if(props.isAuth) {
     return <Redirect to="/" />
   } 
