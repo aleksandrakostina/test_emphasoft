@@ -1,4 +1,4 @@
-export const URL = 'http://emphasoft-test-assignment.herokuapp.com';
+export const URL = 'https://emphasoft-test-assignment.herokuapp.com';
 export const POST = 'POST';
 export const GET = 'GET';
 export const PUT = 'PUT';
