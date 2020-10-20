@@ -7,7 +7,7 @@ import { createForm } from '../form';
 
 const EditForm = createForm('editForm', true)
 
-const EditFormContainer = ({ get, match, edit, user, editUser, clear, isLoading }) => {
+const EditFormContainer = ({ get, match, edit, user, editUser, clear }) => {
   
   useEffect(() => {
     clear();
@@ -17,10 +17,6 @@ const EditFormContainer = ({ get, match, edit, user, editUser, clear, isLoading 
     get(match.params.id);
   }, [match.params.id, get]);
 
-  if(isLoading) {
-    return null;
-  }
-  
   if(editUser) {
     return <Redirect to="/" />
   }
@@ -49,8 +45,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     user: state.users.user,
-    editUser: state.users.editUser,
-    isLoading: state.loader.isLoading
+    editUser: state.users.editUser
   }
 }
 
