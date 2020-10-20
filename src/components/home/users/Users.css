@@ -33,6 +33,22 @@
 }
 
 .users__button {
-  padding: 0 15px;
-  text-decoration: none;
+  width: 60px;
+  height: 25px;
+}
+
+@media (max-width: 768px) {
+  .users__button {
+    height: 20px;
+    width: 50px;
+  }
+  .users__name, .users__id {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 375px) {
+  .users__name, .users__id {
+    font-size: 11px;
+  }
 }

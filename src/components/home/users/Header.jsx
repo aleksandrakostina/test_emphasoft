@@ -9,6 +9,7 @@ const Header = () => {
       <span className="users__name">Firstname</span>
       <span className="users__name">Lastname</span>
       <span className="users__name">Username</span>
+      <span className="users__button"></span>
     </div>
   )
 }

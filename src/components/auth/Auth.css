@@ -72,3 +72,31 @@
   height: 20px;
   color: #ff0000;
 }
+
+@media (max-width: 768px) {
+  .button {
+    font-size: 12px;
+  }
+  .auth__title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  .auth-form__input {
+    font-size: 14px;
+  }
+  .auth-form__item {
+    margin-bottom: 6px;
+  }
+  .auth-form__button {
+    margin-top: 11px;
+  }
+  .container {
+    max-width: 294px;
+  }
+}
+
+@media (max-width: 375px) {
+  .container {
+    border: none;
+  }
+}

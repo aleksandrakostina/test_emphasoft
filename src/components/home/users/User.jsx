@@ -9,7 +9,9 @@ const User = (props) => {
       <span className="users__name">{props.user.first_name ? props.user.first_name : '-'}</span>
       <span className="users__name">{props.user.last_name ? props.user.last_name : '-'}</span>
       <span className="users__name">{props.user.username}</span>
-      <Link className="button users__button" to={`/users/${props.user.id}`}>Edit</Link>
+      <Link to={`/users/${props.user.id}`}>
+        <button className="button users__button">Edit</button>
+      </Link>
     </li>
   )
 }
