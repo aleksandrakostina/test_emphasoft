@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/test_emphasoft/static/css/main.fb4adb70.chunk.css",
-    "main.js": "/test_emphasoft/static/js/main.63dcf4b1.chunk.js",
-    "main.js.map": "/test_emphasoft/static/js/main.63dcf4b1.chunk.js.map",
+    "main.css": "/test_emphasoft/static/css/main.a3d6e920.chunk.css",
+    "main.js": "/test_emphasoft/static/js/main.aec02834.chunk.js",
+    "main.js.map": "/test_emphasoft/static/js/main.aec02834.chunk.js.map",
     "runtime-main.js": "/test_emphasoft/static/js/runtime-main.d688091b.js",
     "runtime-main.js.map": "/test_emphasoft/static/js/runtime-main.d688091b.js.map",
     "static/js/2.355cbcdb.chunk.js": "/test_emphasoft/static/js/2.355cbcdb.chunk.js",
     "static/js/2.355cbcdb.chunk.js.map": "/test_emphasoft/static/js/2.355cbcdb.chunk.js.map",
     "index.html": "/test_emphasoft/index.html",
-    "precache-manifest.fe139c055e84f9ac4fffa14945ac2c78.js": "/test_emphasoft/precache-manifest.fe139c055e84f9ac4fffa14945ac2c78.js",
+    "precache-manifest.9fb322beb0a1740ddbc7a0b1abc31dfc.js": "/test_emphasoft/precache-manifest.9fb322beb0a1740ddbc7a0b1abc31dfc.js",
     "service-worker.js": "/test_emphasoft/service-worker.js",
-    "static/css/main.fb4adb70.chunk.css.map": "/test_emphasoft/static/css/main.fb4adb70.chunk.css.map",
+    "static/css/main.a3d6e920.chunk.css.map": "/test_emphasoft/static/css/main.a3d6e920.chunk.css.map",
     "static/js/2.355cbcdb.chunk.js.LICENSE.txt": "/test_emphasoft/static/js/2.355cbcdb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d688091b.js",
     "static/js/2.355cbcdb.chunk.js",
-    "static/css/main.fb4adb70.chunk.css",
-    "static/js/main.63dcf4b1.chunk.js"
+    "static/css/main.a3d6e920.chunk.css",
+    "static/js/main.aec02834.chunk.js"
   ]
 }
