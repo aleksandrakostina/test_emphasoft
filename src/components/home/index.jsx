@@ -5,15 +5,11 @@ import CreateButton from './CreateButton';
 import Header from './header';
 import Users from './users';
 
-const Home = ({getUsers, isLoading}) => {
-  
+const Home = ({ getUsers }) => {
+
   useEffect(() => {
     getUsers();
   }, [getUsers]);
-
-  if(isLoading) {
-    return null;
-  }
 
   return (
     <>
@@ -24,12 +20,6 @@ const Home = ({getUsers, isLoading}) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isLoading: state.loader.isLoading
-  }
-}
-
 const mapDispatchToProps = (dispatch) => {
   return {
     getUsers: () => {
@@ -38,4 +28,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(null, mapDispatchToProps)(Home);

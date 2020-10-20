@@ -3,7 +3,7 @@ import { fetchEdit } from "../components/api/fetchEdit";
 import { fetchToken } from "../components/api/fetchToken";
 import { fetchUser } from "../components/api/fetchUser";
 import { fetchUsers } from "../components/api/fetchUsers";
-import { LOGIN_FAIL, LOGIN_SUCCESS, GET_USERS, LOGOUT, GET_USER, EDIT_USER, CREATE_USER, CLEAR, LOADING, LOADED, ERROR } from "./actions";
+import { LOGIN_FAIL, LOGIN_SUCCESS, GET_USERS, LOGOUT, GET_USER, EDIT_USER, CREATE_USER, CLEAR, ERROR } from "./actions";
 
 export function loginSuccess(token) {
   return { type: LOGIN_SUCCESS, token };
@@ -37,14 +37,6 @@ export function clear() {
   return { type: CLEAR }
 }
 
-export function loading() {
-  return { type: LOADING }
-}
-
-export function loaded() {
-  return { type: LOADED }
-}
-
 export function createError(err) {
   return { type: ERROR, err }
 }
@@ -61,11 +53,9 @@ export const login = (data) => (dispatch) => {
 };
 
 export const getUsers = () => (dispatch) => {
-  dispatch(loading());
   return fetchUsers()
     .then(users => {
       dispatch(getData(users));
-      dispatch(loaded());
     })
     .catch(err => {  
       dispatch(loginFail());
@@ -73,11 +63,9 @@ export const getUsers = () => (dispatch) => {
 }
 
 export const get = (id) => (dispatch) => {
-  dispatch(loading());
   return fetchUser(id)
     .then(user => {
-      dispatch(getUser(user));
-      dispatch(loaded());    
+      dispatch(getUser(user));   
     })
     .catch(err => {  
       dispatch(createError(err));

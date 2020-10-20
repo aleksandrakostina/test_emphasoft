@@ -22,7 +22,7 @@ const Users = ({ users }) => {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.users.users
+    users: state.users.users,
   }
 }
 

@@ -6,6 +6,4 @@ export const GET_USER = 'GET_USER';
 export const EDIT_USER = 'EDIT_USER';
 export const CREATE_USER = 'CREATE_USER';
 export const CLEAR = 'CLEAR';
-export const LOADING = 'LOADING';
-export const LOADED = 'LOADED';
 export const ERROR = 'ERROR';

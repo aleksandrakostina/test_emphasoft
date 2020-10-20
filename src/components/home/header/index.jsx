@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { logout } from '../../../redux/actionCreators';
+import { logout, clear } from '../../../redux/actionCreators';
 import './Header.css';
 
 const Header = (props) => {
 
   const handleClick = () => {
     props.logout();
+    props.clear();
   }
 
   return (
@@ -24,7 +25,10 @@ const mapDispathToProps = (dispath) => {
   return {
     logout: () => {
       dispath(logout())
-    } 
+    },
+    clear: () => {
+      dispath(clear())
+    }
   }
 }
 
