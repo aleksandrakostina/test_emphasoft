@@ -7,7 +7,7 @@ import InputField from '../InputFields';
 import './Form.css';
 
 function Form(props) {
- 
+
   return (
     <div className="forms">
       <div className="wrapper">
@@ -43,7 +43,7 @@ const mapStateToProps = (state, ownProps) => {
       username: ownProps.user?.username || '',
       first_name: ownProps.user?.first_name || '',
       last_name: ownProps.user?.last_name || '',
-      is_active: ownProps.user?.is_active || true,
+      is_active: ownProps.user?.is_active !== undefined ? ownProps.user.is_active : true,
       password: ''
     }
   }
