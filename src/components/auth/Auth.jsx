@@ -17,7 +17,8 @@ const Auth = (props) => {
               component={InputField}
               type="text" 
               placeholder="Username" 
-              name="username" />
+              name="username"
+              autoComplete="username" />
           </div>
           <div className="auth-form__item">
             <Field 
@@ -26,8 +27,9 @@ const Auth = (props) => {
               type="password" 
               placeholder="Password" 
               name="password"
-              autoComplete="off" />
-          </div>  
+              autoComplete="current-password" />
+          </div>
+          <div className="form__error">{props.error && props.error}</div>
           <button className="button auth-form__button" type="submit">LogIn</button>
         </form>
       </div>

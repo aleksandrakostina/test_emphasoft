@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { fetchCreate } from "../components/api/fetchCreate";
 import { fetchEdit } from "../components/api/fetchEdit";
 import { fetchToken } from "../components/api/fetchToken";
@@ -48,7 +49,7 @@ export const login = (data) => (dispatch) => {
     })
     .catch(err => {
       dispatch(loginFail());
-      alert("Can't authorizate")
+      dispatch(stopSubmit("authForm", {_error: "Can't authorizate"}));
     })
 };
 

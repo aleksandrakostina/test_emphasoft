@@ -21,6 +21,7 @@
   font-size: 25px;
   margin-bottom: 20px;
   text-align: center;
+  user-select: none;
 }
 
 .auth-form {
@@ -31,6 +32,7 @@
 
 .auth-form__item {
   margin-bottom: 10px;
+  user-select: none;
 }
 
 .auth-form__input {
