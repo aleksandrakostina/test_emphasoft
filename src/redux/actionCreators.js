@@ -18,10 +18,6 @@ export function getData(users) {
   return { type: GET_USERS, users};
 }
 
-export function logout() {
-  return { type: LOGOUT };
-}
-
 export function getUser(user) {
   return { type: GET_USER, user }
 }
@@ -51,6 +47,11 @@ export const login = (data) => (dispatch) => {
       dispatch(loginFail());
       dispatch(stopSubmit("authForm", {_error: "Can't authorizate"}));
     })
+};
+
+export const logout= () => dispatch => {
+  dispatch({ type: LOGOUT });
+  dispatch(clear());
 };
 
 export const getUsers = () => (dispatch) => {
