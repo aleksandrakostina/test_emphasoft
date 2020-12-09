@@ -8,12 +8,12 @@ import AuthRoute from './AuthRoute';
 
 function Routes() {
   return (
-    <BrowserRouter basename="/test_emphasoft">
-      <AuthRoute path="/" exact component={Home} />
-      <AuthRoute path="/users/:id" component={EditFormContainer} />
-      <Route path="/login" exact component={AuthContainer} />
-      <AuthRoute path="/create" exact component={CreateFormContainer} />
-    </BrowserRouter>
+      <BrowserRouter basename="/test_emphasoft">
+        <AuthRoute path="/" exact component={Home} />
+        <AuthRoute path="/users/:id" component={EditFormContainer} />
+        <Route path="/login" exact component={AuthContainer} />
+        <AuthRoute path="/create" exact component={CreateFormContainer} />
+      </BrowserRouter>   
   );
 }
 

@@ -1,17 +1,40 @@
+.header {
+  background: #5b8bb1;
+  box-shadow: 0 0 10px 0px;
+  padding: 5px 0;
+}
+
 .header__wrapper {
   display: flex;
   justify-content: space-between;
 }
 
-.header__button {
-  background: #ff0000;
-  height: 30px;
-  width: 100px;
+.header__title {
+  font-size: 18px;
+  color: #ffffff;
 }
 
-@media (max-width: 768px) {
-  .header__button {
-    height: 25px;
-    width: 80px;
+.header__button-logout {
+  cursor: pointer;
+}
+
+.header__text {
+  margin-right: 8px;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.header__user {
+  margin-right: 20px;
+  color: #ffe000;
+  font-size: 16px;
+}
+
+@media (max-width: 375px) {
+  .header__title {
+    font-size: 15px;
+  }
+  .header__text {
+    font-size: 14px;
   }
 }

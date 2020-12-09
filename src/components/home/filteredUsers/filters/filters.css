@@ -1,0 +1,29 @@
+.filters__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.filters__button {
+  width: 110px;
+  background: #a2888f;
+}
+
+.filters__input {
+  display: flex;
+  flex-direction: column;
+}
+
+.filters__input > input {
+  margin-bottom: 10px;
+}
+
+.filters__input > input:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 375px) {
+  .filters__button {
+    width: 94px;
+  }
+}

@@ -1,43 +1,26 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { clear, edit, get } from '../../redux/actionCreators';
-import { createForm } from '../form';
+import { closeEditModal, editUser } from '../../redux/actionCreators';
+import { createForm } from '../modal/ModalEditCreate';
 
 const EditForm = createForm('editForm', true)
 
-const EditFormContainer = ({ get, match, edit, user, editUser, clear }) => {
-  
-  useEffect(() => {
-    clear();
-  }, [editUser, clear]);
-
-  useEffect(() => {
-    get(match.params.id);
-  }, [match.params.id, get]);
-
-  if(editUser) {
-    return <Redirect to="/" />
-  }
+const EditFormContainer = ({ editUser, user, selected, closeEditModal }) => {
 
   const handleSubmit = (values) => {
-    edit(match.params.id, values);
+    editUser(selected, values);
   }
  
-  return user && <EditForm title='Edit username' user={user} onSubmit={handleSubmit} />;
+  return user && <EditForm title='Edit username' user={user} onSubmit={handleSubmit} closeModal={closeEditModal} />;
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    get: (id) => {
-      dispatch(get(id));
+    editUser: (id, user) => {
+      dispatch(editUser(id, user));
     },
-    edit: (id, user) => {
-      dispatch(edit(id, user));
-    },
-    clear: () => {
-      dispatch(clear());
+    closeEditModal: () => {
+      dispatch(closeEditModal());
     }
   }
 }
@@ -45,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     user: state.users.user,
-    editUser: state.users.editUser
+    selected: state.users.selected
   }
 }
 

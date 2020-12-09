@@ -1,19 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../../redux/actionCreators';
-import './Header.css';
+import { ReactComponent as IconLogout } from './../../../assets/images/logout.svg';
+import './header.css';
 
-const Header = (props) => {
+const Header = ({ logout, user }) => {
 
-  const handleClick = () => {
-    props.logout();
+  const handleLogout = () => {
+    logout();
   }
 
   return (
     <header className="header">
       <div className="wrapper header__wrapper">
-        <h2 className="header__title">Users list</h2>
-        <button className="button header__button" onClick={handleClick}>Logout</button>
+        <h2 className="header__title">React User Application</h2>
+        <div className="header__button-logout" onClick={handleLogout}> 
+          <span className="header__text">Logout</span>
+          <IconLogout className="icon-action" />
+        </div>
       </div>
     </header>   
   )

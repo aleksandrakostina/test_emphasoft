@@ -13,10 +13,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  overflow-y: hidden;
 }
 
-@media (max-width: 768px) {
-  h2 {
-    font-size: 15px;
-  }
+ul {
+  overflow-y: auto;
+  height: calc(100% - 274px);
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

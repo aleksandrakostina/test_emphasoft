@@ -1,46 +1,30 @@
 import React from 'react';
-import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { clear, create } from '../../redux/actionCreators';
-import { createForm } from '../form';
+import { closeCreateModal, createUser } from '../../redux/actionCreators';
+import { createForm } from '../modal/ModalEditCreate';
 
 const CreateForm = createForm('createForm');
 
-const CreateFormContainer = ({ createUser, clear, create }) => {
-
-  useEffect(() => {
-    clear();
-  }, [createUser, clear]);
-
-  if(createUser) {
-    return <Redirect to="/" />
-  }
+const CreateFormContainer = ({ createUser, closeCreateModal }) => {
 
   const handleSubmit = (values) => {
-    create(values);
+    createUser(values);
   }
  
   return (
-    <CreateForm title="Create user" onSubmit={handleSubmit} />
+    <CreateForm title="Create user" onSubmit={handleSubmit} closeModal={closeCreateModal} />
   );
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    create: (user) => {
-      dispatch(create(user))
+    createUser: (user) => {
+      dispatch(createUser(user))
     },
-    clear: () => {
-      dispatch(clear());
+    closeCreateModal: () => {
+      dispatch(closeCreateModal());
     }
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    createUser: state.users.createUser
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateFormContainer);
+export default connect(null, mapDispatchToProps)(CreateFormContainer);

@@ -9,6 +9,7 @@ export const loginReducer = (state = initialState, action) => {
   switch(action.type) {
     case LOGIN_SUCCESS:
       localStorage.setItem('token', action.token);
+      localStorage.setItem('username', action.user);
       return {
         ...state,
         err: false,
@@ -22,6 +23,7 @@ export const loginReducer = (state = initialState, action) => {
       };
     case LOGOUT:
       localStorage.removeItem('token');
+      localStorage.removeItem('username');
       return {
         ...state,
         isAuth: false
