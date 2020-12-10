@@ -34,14 +34,14 @@ const tableColumns = [
     order: 'default',
     classes: 'users__cell users__name users__cell_header',
     sort: false,
-    filter: true
+    filter: false
   },
   {
     label: 'last_name',
     name: 'Lastname',
     order: 'default',
     classes: 'users__cell users__name users__cell_header',
-    sort: true,
+    sort: false,
     filter: false
   }
 ];

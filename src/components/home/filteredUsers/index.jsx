@@ -5,10 +5,8 @@ import Filters from './filters/Filters';
 
 const FilteredUsers = ({ users, setSelected, selected, handleClickToggle, columns }) => {
 
-  const initialStateFilters = {
-    filterFirstname: '',
-    filterUsername: ''
-  }
+  const initialStateFilters = {};
+  columns.filter(col => col.filter).forEach(element => initialStateFilters[element.name.toLowerCase()] = '');
 
   const [filterInput, setFilterInput] = useState(initialStateFilters);
 
@@ -21,8 +19,10 @@ const FilteredUsers = ({ users, setSelected, selected, handleClickToggle, column
     });
   }
 
-  if(filterInput.filterUsername) {
-    list = filterUsersAll(list, filterInput.filterUsername, 'username');
+  for (let key in filterInput) {
+    if(filterInput[key]) {
+      list = filterUsersAll(list, filterInput[key], key);
+    }
   }
 
   const handleResetFilters = () => {
