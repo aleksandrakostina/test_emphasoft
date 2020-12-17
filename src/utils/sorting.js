@@ -15,14 +15,14 @@ export function sortingUsers(users, key, order) {
     const A = (typeof a[key] === 'string') ? a[key].toLowerCase() : a[key];
     const B = (typeof b[key] === 'string') ? b[key].toLowerCase() : b[key];
     
-    let comparison = 0;
+    let direction = 0;
     if (A > B) {
-      comparison = 1;
+      direction = 1;
     } else if (A < B) {
-      comparison = -1;
+      direction = -1;
     }
     return (
-      (order === 'desc') ? (comparison * -1) : comparison
+      (order === 'desc') ? (direction * -1) : direction
     );
   });
 }

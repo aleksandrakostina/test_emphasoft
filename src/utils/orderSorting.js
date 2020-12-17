@@ -1,17 +1,21 @@
-export const currentOrder = (order) => {
+const sortDesc = 'desc';
+const sortDefault = 'default';
+const sortAsc = 'asc';
+
+export const currentOrder = (sort) => {
   let currentSort;
-  switch (order) {
-    case 'default':
-      currentSort = 'asc';
+  switch (sort) {
+    case sortDefault:
+      currentSort = sortAsc;
       break;
-    case 'asc':
-      currentSort = 'desc';
+    case sortAsc:
+      currentSort = sortDesc;
       break;
-    case 'desc':
-      currentSort = 'default';
+    case sortDesc:
+      currentSort = sortDefault;
       break;
     default:
-      currentSort = 'default';
+      currentSort = sortDefault;
   }
   return currentSort;
 }

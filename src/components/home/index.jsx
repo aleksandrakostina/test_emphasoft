@@ -11,37 +11,43 @@ import ActionButtons from './actionButtons/ActionButtons';
 import Spinner from '../common/spinner/Spinner';
 import DeleteFormContainer from '../deleteForm';
 
+const sortDefault = 'default';
+
 const tableColumns = [
   {
     label: 'id',
     name: 'ID',
-    order: 'default',
+    sort: sortDefault,
+    order: null,
     classes: 'users__cell users__id users__cell_header',
-    sort: true,
+    isSort: true,
     filter: false
   },
   {
     label: 'username',
     name: 'Username',
-    order: 'default',
+    sort: sortDefault,
+    order: null,
     classes: 'users__cell users__name users__cell_header',
-    sort: false,
+    isSort: true,
     filter: true
   },
   {
     label: 'first_name',
     name: 'Firstname',
-    order: 'default',
+    sort: sortDefault,
+    order: null,
     classes: 'users__cell users__name users__cell_header',
-    sort: false,
+    isSort: false,
     filter: false
   },
   {
     label: 'last_name',
     name: 'Lastname',
-    order: 'default',
+    sort: sortDefault,
+    order: null,
     classes: 'users__cell users__name users__cell_header',
-    sort: false,
+    isSort: false,
     filter: false
   }
 ];
@@ -56,27 +62,49 @@ const Home = ({ openDeleteModal, isOpenDeleteModal, getUser, isLoading, getUsers
 
   useEffect(() => {
     setList(users);
-    columns.forEach(item => {
-      if(item.order !== 'default') {
-        setList(sortingUsers(users, item.label, item.order))
+  }, [users]);
+
+  useEffect(() => {
+    let listUsers = users;
+    const sortedUsersWithOrder = columns.filter(item => item.order).sort((a, b) => {
+      return a.order - b.order;
+    });
+    sortedUsersWithOrder.forEach(item => {
+      if(item.isSort && item.sort !== sortDefault) {
+        listUsers = sortingUsers(listUsers, item.label, item.sort);
       }
-    })
-  }, [users, columns]);
+    });
+    setList(listUsers);
+  }, [/*columns,*/ users])
 
   if(isLoading) {
     return <Spinner />
   }
   
   const handleClickToggle = (id) => {
-    const order = columns[id].order;
-    const currentSort = currentOrder(order);
-    const changeColumns = columns.map((element, index) =>  (
+    const sort = columns[id].sort;
+    const currentSort = currentOrder(sort);
+    let changeColumns;
+    if (currentSort === sortDefault) {
+      changeColumns = columns.map((element, index) => (
+        { ...element,
+          sort: index === id ? currentSort : element.sort,
+          order: index === id ? null : element.order
+        }
+      ))
+    } else {
+    let ord = columns.filter(item => item.order).map(i => i.order);
+    let maxOrder = ord.length > 0 ? Math.max(...ord) : 0;
+    
+    changeColumns = columns.map((element, index) =>  (
       { ...element, 
-        order: index === id ? currentSort : element.order 
+        sort: index === id ? currentSort : element.sort,
+        order: index === id ? maxOrder + 1 : element.order
       }
     ));
+    }
     setColumns(changeColumns);
-    if(currentSort === 'default') {
+    if(currentSort === sortDefault) {
       setList(sortingUsers(users, columns[id].label, currentSort));
     } else {
       setList(sortingUsers(list, columns[id].label, currentSort));

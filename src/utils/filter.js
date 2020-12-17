@@ -3,6 +3,5 @@ export function filterUsers(users, inputValue) {
 }
 
 export function filterUsersAll(users, inputValue, key) {
-  console.log(inputValue, key)
   return users.filter(user => user[key].toLowerCase().startsWith(inputValue.toLowerCase()));
 }

@@ -5,7 +5,7 @@ import { ReactComponent as IconCancel} from './../../assets/images/cancel.svg';
 const Modal = ({ title, closeModal, actionText, children, onSubmit }) => {
 
   return (
-    <div className="modal" onClick={closeModal}>
+    <div className="modal">
       <div className="modal__container">
         <div className="modal__header">
           <span className="modal__title">{title}</span>

@@ -11,12 +11,12 @@ const UsersHeader = ({ handleClickToggle, columns }) => {
         <span key={index} 
               className={item.classes}
               onClick={() => {
-                item.sort && handleClickToggle(index)
+                item.isSort && handleClickToggle(index)
                }}>
           {item.name}
-          {item.sort && <span className="users__icon">
-            <UpArrow className={classname("icon_arrow", {"icon_arrow_active": item.order === 'asc'})} />
-            <DownArrow className={classname("icon_arrow", {"icon_arrow_active": item.order === 'desc'})} />
+          {item.isSort && <span className="users__icon">
+            <UpArrow className={classname("icon_arrow", {"icon_arrow_active": item.sort === 'asc'})} />
+            <DownArrow className={classname("icon_arrow", {"icon_arrow_active": item.sort === 'desc'})} />
           </span>}      
         </span>)}
     </div>
