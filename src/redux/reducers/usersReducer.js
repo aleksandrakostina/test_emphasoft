@@ -1,4 +1,4 @@
-import { CLOSE_CREATE_MODAL, CLOSE_EDIT_MODAL, OPEN_CREATE_MODAL, OPEN_EDIT_MODAL, CREATE_USER, EDIT_USER, ERROR, SET_USER, SET_USERS, LOGOUT, SELECTED, LOADING, LOADED, DELETE_USER, OPEN_DELETE_MODAL, CLOSE_DELETE_MODAL } from "../actions";
+import { CLOSE_CREATE_MODAL, CLOSE_EDIT_MODAL, OPEN_CREATE_MODAL, OPEN_EDIT_MODAL, CREATE_USER, EDIT_USER, ERROR, SET_USER, SET_USERS, LOGOUT, SELECTED, LOADING, LOADED, DELETE_USER, OPEN_DELETE_MODAL, CLOSE_DELETE_MODAL, SET_CURRENT_USER } from "../actions";
 
 const initialState = {
   users: [],
@@ -9,7 +9,8 @@ const initialState = {
   isOpenCreateModal: false,
   isOpenDeleteModal: false,
   removeUser: null,
-  isLoading: false
+  isLoading: false,
+  currentUser: null
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -18,6 +19,11 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: action.users
+      }
+    case SET_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.user
       }
     case SET_USER:
       return {
@@ -30,6 +36,9 @@ export const usersReducer = (state = initialState, action) => {
         users: [...state.users, action.user]
       }
     case EDIT_USER:
+      if(state.currentUser.id === action.user.id) {
+        localStorage.setItem('username', action.user.username);
+      }
       const newUsers = state.users.map(user => {
         if(user.id === action.user.id) {
           const newUser = {
@@ -64,7 +73,8 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: [],
-        selected: null
+        selected: null,
+        currentUser: null
       }
     case SELECTED:
       return {

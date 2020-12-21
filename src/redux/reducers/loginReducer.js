@@ -2,7 +2,7 @@ import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "../actions";
 
 const initialState = {
   err: false,
-  isAuth: !!localStorage.getItem('token'),
+  isAuth: !!localStorage.getItem('token')
 };
 
 export const loginReducer = (state = initialState, action) => {
@@ -15,7 +15,7 @@ export const loginReducer = (state = initialState, action) => {
         err: false,
         isAuth: true
       };
-    case LOGIN_FAIL: 
+    case LOGIN_FAIL:
       return {
         ...state,
         isAuth: false,
@@ -31,6 +31,6 @@ export const loginReducer = (state = initialState, action) => {
     default:
       return state;
     }
-  }
+}
 
   

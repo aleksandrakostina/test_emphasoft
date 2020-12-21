@@ -17,3 +17,4 @@ export const LOADED = 'LOADED';
 export const DELETE_USER = 'DELETE_USER';
 export const OPEN_DELETE_MODAL = 'OPEN_DELETE_MODAL';
 export const CLOSE_DELETE_MODAL = 'CLOSE_DELETE_MODAL';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';

@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { validate } from '../../utils/validate';
 import InputField from '../common/inputField';
 import './Auth.css';
-import { ReactComponent as EyeIcon } from './../../assets/images/eye.svg';
+import { ReactComponent as EyeIcon } from './../../assets/images/visibility.svg';
 import { ReactComponent as InvisibleIcon } from './../../assets/images/invisible.svg';
 
 const Auth = (props) => {

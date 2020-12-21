@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import { stopSubmit } from "redux-form";
 import { fetchCreate, fetchDelete, fetchEdit, fetchToken, fetchUser, fetchUsers } from "./../api/apiFetch";
 import { LOGIN_FAIL, LOGIN_SUCCESS, SET_USERS, LOGOUT, SET_USER, EDIT_USER, CREATE_USER, ERROR, SELECTED, 
-  OPEN_EDIT_MODAL, CLOSE_EDIT_MODAL, OPEN_CREATE_MODAL, CLOSE_CREATE_MODAL, LOADING, LOADED, DELETE_USER, OPEN_DELETE_MODAL, CLOSE_DELETE_MODAL } from "./actions";
+  OPEN_EDIT_MODAL, CLOSE_EDIT_MODAL, OPEN_CREATE_MODAL, CLOSE_CREATE_MODAL, LOADING, LOADED, DELETE_USER, OPEN_DELETE_MODAL, CLOSE_DELETE_MODAL, SET_CURRENT_USER } from "./actions";
 
 export function loginSuccess(token, user) {
   return { type: LOGIN_SUCCESS, token, user };
@@ -76,6 +76,10 @@ export function deleteUserSuccess(id) {
   return { type: DELETE_USER, id };
 }
 
+export function setCurrentUser(user) {
+  return { type: SET_CURRENT_USER, user };
+}
+
 export const login = (data) => (dispatch) => {
   return fetchToken(data)
     .then(token => {
@@ -92,6 +96,8 @@ export const getUsers = () => (dispatch) => {
   return fetchUsers()
     .then(users => {
       dispatch(setUsersSuccess(users));
+      const currentUser = users.find(user => user.username === localStorage.getItem("username"));
+      dispatch(setCurrentUser(currentUser));
       dispatch(loaded());
     })
     .catch(err => {
@@ -117,10 +123,13 @@ export const getUser = (id) => (dispatch) => {
     })
 }
 
-export const editUser = (id, user) => (dispatch) => {
+export const editUser = (id, user) => (dispatch, getState) => {
   return fetchEdit(id, user)
   .then(data => {
     dispatch(editUserSuccess(data));
+    if(getState().users.currentUser.id === id) {
+      dispatch(setCurrentUser(user));
+    }
     dispatch(closeEditModal());
     toast.success('User updated successfully!');
   })
@@ -163,6 +172,8 @@ export const deleteUser = (id) => (dispatch) => {
     dispatch(createError(err.message));
     if(err.message.detail) {
       toast.error(err.message.detail);
+    } else if(err.message.message) {
+      toast.error(err.message.message);
     } else {
       toast.error('Error');
     }

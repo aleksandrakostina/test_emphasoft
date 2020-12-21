@@ -14,20 +14,48 @@
   color: #ffffff;
 }
 
-.header__button-logout {
+.header__rigt-part {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.header__link {
   cursor: pointer;
+  margin-right: 30px;
+}
+
+.header__link:last-child {
+  margin-right: 0;
+}
+
+.header__link_profile {
+  display: flex;
+  align-items: center;
+  cursor: auto;
 }
 
 .header__text {
-  margin-right: 8px;
   color: #ffffff;
   font-size: 16px;
 }
 
-.header__user {
-  margin-right: 20px;
-  color: #ffe000;
-  font-size: 16px;
+.header__text_user {
+  margin-left: 8px;
+  width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header__text_logout {
+  margin-right: 8px;
+}
+
+.icon-user {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
 }
 
 @media (max-width: 375px) {
