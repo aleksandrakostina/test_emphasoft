@@ -4,9 +4,9 @@ import Users from './users';
 import Filters from './filters/Filters';
 
 const FilteredUsers = ({ users, setSelected, selected, handleClickToggle, columns }) => {
-  
+
   const initialStateFilters = {};
-  columns.filter(col => col.filter).forEach(element => initialStateFilters[element.name.toLowerCase()] = '');
+  columns.filter(col => col.filter).forEach(element => initialStateFilters[element.label] = '');
 
   const [filterInput, setFilterInput] = useState(initialStateFilters);
 

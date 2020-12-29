@@ -58,11 +58,31 @@
   fill: #ffffff;
 }
 
+@media (max-width: 530px) {
+  .header__text_logout {
+    display: none;
+  }
+  .header__link {
+    margin-right: 12px;
+  }
+  .header__link:last-child {
+    margin-right: 0;
+  }
+}
+
 @media (max-width: 375px) {
   .header__title {
     font-size: 15px;
   }
   .header__text {
     font-size: 14px;
+  }
+  .icon-user {
+    width: 15px;
+    height: 15px;
+  }
+  .icon-logout {
+    width: 10px;
+    height: 10px;
   }
 }

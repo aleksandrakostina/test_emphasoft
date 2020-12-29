@@ -6,10 +6,10 @@ import AuthRoute from './AuthRoute';
 
 const Routes = () => {
   return (
-      <BrowserRouter basename="/test_emphasoft">
-        <AuthRoute path="/" exact component={Home} />
-        <Route path="/login" exact component={AuthContainer} />
-      </BrowserRouter>   
+    <BrowserRouter basename="/test_emphasoft">
+      <AuthRoute path="/" exact component={Home} />
+      <Route path="/login" exact component={AuthContainer} />
+    </BrowserRouter>   
   );
 }
 

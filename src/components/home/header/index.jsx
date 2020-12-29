@@ -12,11 +12,11 @@ const Header = ({ logout, currentUser }) => {
         <div className="header__rigt-part">
           <div className="header__link header__link_profile">
             <IconUser className="icon-user" />
-            <span className="header__text header__text_user">{currentUser && currentUser.username}</span>
+            <span className="header__text header__text_user">{currentUser ? currentUser.username : localStorage.getItem('username')}</span>
           </div> 
           <div className="header__link" onClick={logout}>              
             <span className="header__text header__text_logout">Logout</span>
-            <IconLogout className="icon-action" />
+            <IconLogout className="icon-action icon-logout" />
           </div>    
         </div>
       </div>

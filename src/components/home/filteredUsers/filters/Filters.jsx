@@ -10,7 +10,7 @@ const Filters = ({ handleChangeFilter, filterInput, handleResetFilters }) => {
       filters.push(<FilterInput key={key} 
                                 value={filterInput[key]} 
                                 handleChange={handleChangeFilter} 
-                                filter={key} 
+                                filter={key.replace(/_/g, '')} 
                                 name={key} />)
     }
     return filters;

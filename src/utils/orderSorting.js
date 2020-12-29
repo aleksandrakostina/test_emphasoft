@@ -2,7 +2,7 @@ const sortDesc = 'desc';
 const sortDefault = 'default';
 const sortAsc = 'asc';
 
-export const currentOrder = (sort) => {
+export const changeCurrentOrder = (sort) => {
   let currentSort;
   switch (sort) {
     case sortDefault:
